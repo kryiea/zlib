@@ -34,12 +34,16 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'SearchBar',
   data() {
     return {
       searchInput: '',
-      error: ''
+      error: '',
+      currentRequest: null,
+      debounceTimeout: null,
+      isSearching: false
     };
   },
   computed: {
@@ -70,10 +74,88 @@ export default {
       this.error = '';
     },
     handleSearch() {
-      if (this.isValidInput) {
-        this.$emit('search', this.searchInput.trim());
+      const initialInput = this.searchInput.trim();
+      if (!initialInput) {
+        this.error = '请输入搜索内容';
+        return;
       }
-    }
+
+      // 清除之前的防抖定时器
+      if (this.debounceTimeout) {
+        clearTimeout(this.debounceTimeout);
+        console.log('已清除之前的防抖定时器');
+      }
+
+      // 如果存在进行中的请求，先取消
+      if (this.currentRequest) {
+        this.currentRequest.cancel('新的搜索请求');
+        console.log('已取消之前的搜索请求');
+        this.currentRequest = null;
+        this.isSearching = false;
+      }
+
+      // 确保每次搜索请求都能正确处理
+      if (this.isSearching) {
+        console.log('当前正在搜索，忽略新的搜索请求');
+        return;
+      }
+
+      // 设置新的防抖定时器
+      this.debounceTimeout = setTimeout(async () => {
+        try {
+          const currentInput = this.searchInput.trim();
+          if (!currentInput) return;
+
+          // 创建新的可取消请求
+          const cancelToken = axios.CancelToken.source();
+          this.currentRequest = cancelToken;
+          this.isSearching = true;
+          
+          this.$emit('search-start');
+          console.log('开始搜索:', currentInput);
+          
+          // 使用最新输入值发起请求
+          await this.$emit('search', currentInput, cancelToken.token);
+          
+          console.log('搜索成功:', currentInput);
+        } catch (error) {
+          // 统一处理取消请求的情况
+          if (axios.isCancel(error)) {
+            console.log('请求取消:', error.message);
+            return;
+          }
+          
+          console.error('搜索错误:', error);
+          let errorMessage = '搜索请求失败，请重试';
+          
+          if (error.response) {
+            errorMessage = error.response.data.message || '服务器返回错误';
+          } else if (error.request) {
+            errorMessage = '无法连接到服务器';
+          }
+          
+          // 显示错误但不清空输入
+          this.error = `搜索失败: ${errorMessage}`;
+          this.$emit('search-error', error);
+        } finally {
+          // 请求完成后清理
+          this.currentRequest = null;
+          this.isSearching = false;
+          this.$emit('search-end');
+          console.log('搜索结束');
+        }
+      }, 50); // 优化防抖时间
+    },
+    
+    beforeUnmount() {
+      // 组件卸载时清理
+      if (this.debounceTimeout) {
+        clearTimeout(this.debounceTimeout);
+      }
+      if (this.currentRequest) {
+        this.currentRequest.cancel('组件卸载');
+      }
+    },
   }
 };
 </script>
@@ -104,4 +186,4 @@ export default {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   border-color: #80bdff;
 }
-</style> 
+</style>

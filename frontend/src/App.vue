@@ -44,6 +44,7 @@ export default {
     async handleSearch(keyword) {
       try {
         this.hasSearched = true;
+        this.searchResults = []; // 清空之前的搜索结果
         const response = await axios.get(`/api/zlibrary/s/${encodeURIComponent(keyword)}`);
         
         if (response.data) {
@@ -109,4 +110,4 @@ export default {
     padding: 0 0.75rem;
   }
 }
-</style> 
+</style>

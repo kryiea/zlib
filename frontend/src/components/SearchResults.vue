@@ -30,12 +30,16 @@
 
       <div class="table-row" v-for="book in sortedBooks" :key="book.isbn">
         <div class="col-book-info">
-          <div class="book-title">{{ book.title }}</div>
+          <div class="book-info-main">
+            <div class="book-title">{{ book.title }}</div>
+            <div class="book-author" v-if="book.author">{{ book.author }}</div>
+          </div>
           <div class="book-details">
-            <span>{{ book.year }}</span>
-            <span>| {{ book.language }}</span>
-            <span>| {{ book.filesize }}</span>
-            <span>| {{ book.extension }}</span>
+            <span v-if="book.year">{{ book.year }}</span>
+            <span v-if="book.language">{{ book.language }}</span>
+            <span v-if="book.filesize">{{ book.filesize }}</span>
+            <span v-if="book.extension">{{ book.extension }}</span>
+            <span v-if="book.isbn">ISBN: {{ book.isbn }}</span>
           </div>
         </div>
         <div class="col-author">{{ book.author }}</div>
@@ -123,7 +127,8 @@ export default {
   },
   data() {
     return {
-      sortOrder: 'desc',  // 'none', 'asc', 或 'desc'
+      sortOrder: 'desc',  // 默认降序排列
+      debounceTimer: null,
       exampleBooks: [
         {
           title: '示例书籍 1',
@@ -186,7 +191,7 @@ export default {
   },
   methods: {
     toggleSort() {
-      // 循环切换排序状态：none -> desc -> asc -> none
+      // 循环切换排序状态：none -> desc -> asc
       switch(this.sortOrder) {
         case 'none':
           this.sortOrder = 'desc';
@@ -197,18 +202,30 @@ export default {
         case 'asc':
           this.sortOrder = 'none';
           break;
+        default:
+          this.sortOrder = 'none';
       }
+      this.persistSortOrder(this.sortOrder);
+    },
+    persistSortOrder(order) {
+      localStorage.setItem('bookSortOrder', order);
     },
     sortBooks(books) {
       if (this.sortOrder === 'none') {
-        return books;  // 不排序，返回原始数组
+        return books;
       }
+      
       return [...books].sort((a, b) => {
-        const yearA = parseInt(a.year) || 0;
-        const yearB = parseInt(b.year) || 0;
+        const yearA = parseInt(a.year, 10) || 0;
+        const yearB = parseInt(b.year, 10) || 0;
+        
+        if (yearA === yearB) {
+          return a.title.localeCompare(b.title);
+        }
+        
         return this.sortOrder === 'asc' ? yearA - yearB : yearB - yearA;
       });
-    }
+    },
   }
 }
 </script>
@@ -259,57 +276,74 @@ export default {
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   overflow: hidden;
 }
-
 .table-header {
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: minmax(300px, 3fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(120px, 1fr) minmax(120px, 1fr);
+  gap: 1rem;
   background-color: #f9fafb;
   padding: 1rem;
   font-weight: 500;
   color: #374151;
   border-bottom: 1px solid #e5e7eb;
+  align-items: center;
 }
 
 .table-row {
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: minmax(300px, 3fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(120px, 1fr) minmax(120px, 1fr);
+  gap: 1rem;
   padding: 1rem;
   border-bottom: 1px solid #e5e7eb;
   transition: background-color 0.2s ease;
+  align-items: center;
 }
-
-.table-row:hover {
-  background-color: #f9fafb;
-}
-
-.table-row:last-child {
-  border-bottom: none;
+.book-info-main {
+  margin-bottom: 0.5rem;
 }
 
 .book-title {
   font-weight: 500;
   color: #111827;
-  margin-bottom: 0.375rem;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  min-height: 2.8em;
+}
+
+.book-author {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-top: 0.25rem;
 }
 
 .book-details {
-  font-size: 0.875rem;
-  color: #6b7280;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
 }
 
 .book-details span {
-  position: relative;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
 }
 
 .book-details span:not(:last-child)::after {
-  content: "•";
-  margin-left: 0.5rem;
-  color: #d1d5db;
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background-color: #d1d5db;
+  border-radius: 50%;
+  margin-left: 0.75rem;
 }
-
 .download-link {
   padding: 0.375rem 1rem;
   background-color: #10b981;
@@ -327,17 +361,14 @@ export default {
   min-width: 90px;
   height: 32px;
 }
-
 .download-link:hover {
   background-color: #059669;
 }
-
 .download-link:disabled {
   background-color: #e5e7eb;
   color: #9ca3af;
   cursor: not-allowed;
 }
-
 .source-badge {
   padding: 0.375rem 0.75rem;
   border-radius: 6px;
@@ -351,11 +382,9 @@ export default {
   height: 32px;
   min-width: 90px;
 }
-
 .source-zlibrary {
   background-color: #10b981;
 }
-
 .no-results {
   text-align: center;
   padding: 3rem 1.5rem;
@@ -364,30 +393,25 @@ export default {
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-
 .example-books {
   opacity: 0.8;
 }
-
 .example-title {
   margin-bottom: 1rem;
   font-weight: 500;
   color: #4b5563;
   font-size: 0.875rem;
 }
-
 .col-link {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .col-source {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .sort-button {
   background: none;
   border: none;
@@ -403,26 +427,21 @@ export default {
   transition: all 0.2s ease;
   user-select: none;
 }
-
 .sort-button:hover {
   background-color: #e5e7eb;
 }
-
 .sort-button .bi {
   font-size: 1rem;
   line-height: 1;
   transition: transform 0.2s ease;
 }
-
 .bi-sort-up {
   transform: translateY(-1px);
 }
-
 .bi-sort-down {
   transform: translateY(1px);
 }   
-
 .bi-dash {
   opacity: 0.5;
 }
-</style> 
+</style>

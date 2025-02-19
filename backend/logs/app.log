@@ -106,3 +106,135 @@
 2025-01-22 03:41:19,693 - __main__ - ERROR - Search failed: Search failed on Z-Library: Request failed: ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
 2025-01-22 03:41:19,693 - __main__ - ERROR - Book search error: Search failed on Z-Library: Request failed: ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
 2025-01-22 03:41:20,013 - __main__ - INFO - Search completed - Found 50 books
+2025-02-04 23:13:55,229 - __main__ - INFO - Starting server - Debug: False, Host: 0.0.0.0, Port: 5000
+2025-02-04 23:14:22,421 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 孙子兵法
+2025-02-04 23:14:27,674 - __main__ - INFO - Search completed - Found 50 books
+2025-02-04 23:14:27,688 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 孙子兵法
+2025-02-04 23:14:27,941 - __main__ - ERROR - Search failed: Search failed on Z-Library: Request failed: HTTPSConnectionPool(host='z-library.sk', port=443): Max retries exceeded with url: /s/%E5%AD%99%E5%AD%90%E5%85%B5%E6%B3%95 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+2025-02-04 23:14:27,942 - __main__ - ERROR - Book search error: Search failed on Z-Library: Request failed: HTTPSConnectionPool(host='z-library.sk', port=443): Max retries exceeded with url: /s/%E5%AD%99%E5%AD%90%E5%85%B5%E6%B3%95 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+2025-02-04 23:14:29,046 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 孙子兵法
+2025-02-04 23:14:29,300 - __main__ - ERROR - Search failed: Search failed on Z-Library: Request failed: HTTPSConnectionPool(host='z-library.sk', port=443): Max retries exceeded with url: /s/%E5%AD%99%E5%AD%90%E5%85%B5%E6%B3%95 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+2025-02-04 23:14:29,300 - __main__ - ERROR - Book search error: Search failed on Z-Library: Request failed: HTTPSConnectionPool(host='z-library.sk', port=443): Max retries exceeded with url: /s/%E5%AD%99%E5%AD%90%E5%85%B5%E6%B3%95 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+2025-02-04 23:14:40,937 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 操作系统
+2025-02-04 23:14:41,186 - __main__ - ERROR - Search failed: Search failed on Z-Library: Request failed: HTTPSConnectionPool(host='z-library.sk', port=443): Max retries exceeded with url: /s/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+2025-02-04 23:14:41,186 - __main__ - ERROR - Book search error: Search failed on Z-Library: Request failed: HTTPSConnectionPool(host='z-library.sk', port=443): Max retries exceeded with url: /s/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+2025-02-04 23:15:12,415 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 操作系统
+2025-02-04 23:15:12,749 - __main__ - ERROR - Search failed: Search failed on Z-Library: Request failed: HTTPSConnectionPool(host='z-library.sk', port=443): Max retries exceeded with url: /s/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+2025-02-04 23:15:12,749 - __main__ - ERROR - Book search error: Search failed on Z-Library: Request failed: HTTPSConnectionPool(host='z-library.sk', port=443): Max retries exceeded with url: /s/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+2025-02-04 23:15:22,692 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 操作系统
+2025-02-04 23:15:23,010 - __main__ - ERROR - Search failed: Search failed on Z-Library: Request failed: HTTPSConnectionPool(host='z-library.sk', port=443): Max retries exceeded with url: /s/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+2025-02-04 23:15:23,012 - __main__ - ERROR - Book search error: Search failed on Z-Library: Request failed: HTTPSConnectionPool(host='z-library.sk', port=443): Max retries exceeded with url: /s/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+2025-02-14 04:03:11,732 - __main__ - INFO - Starting server - Debug: False, Host: 0.0.0.0, Port: 5000
+2025-02-14 04:03:28,764 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 操作系统
+2025-02-14 04:03:29,860 - __main__ - INFO - Search completed - Found 50 books
+2025-02-14 04:05:37,234 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 数学
+2025-02-14 04:05:39,179 - __main__ - INFO - Search completed - Found 50 books
+2025-02-14 04:06:09,433 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 数学啊
+2025-02-14 04:06:10,783 - __main__ - INFO - Search completed - Found 50 books
+2025-02-14 04:06:12,437 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 英语
+2025-02-14 04:06:14,321 - __main__ - INFO - Search completed - Found 50 books
+2025-02-14 04:06:17,404 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 英语
+2025-02-14 04:06:18,527 - __main__ - INFO - Search completed - Found 50 books
+2025-02-14 04:06:54,822 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 英语
+2025-02-14 04:06:55,938 - __main__ - INFO - Search completed - Found 50 books
+2025-02-14 04:07:10,172 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 英语
+2025-02-14 04:07:11,314 - __main__ - INFO - Search completed - Found 50 books
+2025-02-14 04:08:05,611 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 数学
+2025-02-14 04:08:07,115 - __main__ - INFO - Search completed - Found 50 books
+2025-02-14 04:08:12,498 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 操作系统
+2025-02-14 04:08:14,229 - __main__ - INFO - Search completed - Found 50 books
+2025-02-14 04:10:14,074 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 语文
+2025-02-14 04:10:15,322 - __main__ - INFO - Search completed - Found 50 books
+2025-02-14 04:10:17,683 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 数学
+2025-02-14 04:10:18,973 - __main__ - INFO - Search completed - Found 50 books
+2025-02-14 04:10:23,945 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 屋里
+2025-02-14 04:10:25,559 - __main__ - INFO - Search completed - Found 50 books
+2025-02-14 04:10:29,570 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 物理
+2025-02-14 04:10:30,767 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:20:34,320 - __main__ - INFO - Starting server - Debug: False, Host: 0.0.0.0, Port: 5000
+2025-02-19 17:21:29,896 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: hhhh
+2025-02-19 17:21:31,196 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:21:39,479 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 操作系统
+2025-02-19 17:21:40,685 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:21:45,709 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 英语
+2025-02-19 17:21:51,599 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:21:51,607 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 英语
+2025-02-19 17:21:53,044 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:25:08,855 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 英语
+2025-02-19 17:25:10,239 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:25:10,501 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 英语
+2025-02-19 17:25:11,601 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:26:51,944 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 重装系
+2025-02-19 17:26:53,857 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:26:57,578 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 操作系统
+2025-02-19 17:26:59,982 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:27:01,573 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 英语
+2025-02-19 17:27:02,722 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:27:09,375 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 英语
+2025-02-19 17:27:10,728 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:27:17,714 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 英语2
+2025-02-19 17:27:18,982 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:28:11,199 - __main__ - INFO - Starting server - Debug: False, Host: 0.0.0.0, Port: 5000
+2025-02-19 17:28:13,838 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 数学
+2025-02-19 17:28:14,953 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:28:19,154 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 英语
+2025-02-19 17:28:20,584 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:28:21,407 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 操作系统
+2025-02-19 17:28:22,505 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:28:24,342 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 数学
+2025-02-19 17:28:25,721 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:28:37,680 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 语文
+2025-02-19 17:28:39,190 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:30:49,654 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 数学
+2025-02-19 17:30:51,028 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:30:51,986 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 语文
+2025-02-19 17:30:53,364 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:30:54,925 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 英语
+2025-02-19 17:30:56,051 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:31:03,178 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 操作系统
+2025-02-19 17:31:04,323 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:31:14,828 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: java
+2025-02-19 17:31:15,885 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:33:40,492 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: golang
+2025-02-19 17:33:41,508 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:36:53,755 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: java
+2025-02-19 17:36:55,078 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:41:30,501 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 数学
+2025-02-19 17:41:31,652 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:41:32,687 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 语文
+2025-02-19 17:41:34,273 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:41:42,228 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 大话数据结构
+2025-02-19 17:41:43,813 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:43:58,967 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 9787521769517
+2025-02-19 17:43:59,897 - __main__ - INFO - Search completed - Found 0 books
+2025-02-19 17:44:14,872 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 9787533962524
+2025-02-19 17:44:14,883 - __main__ - ERROR - Search failed: Search failed on Z-Library: Request failed: HTTPSConnectionPool(host='z-library.sk', port=443): Max retries exceeded with url: /s/9787533962524 (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x0000012EBD218B90>: Failed to establish a new connection: [WinError 10048] 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。')))
+2025-02-19 17:44:14,883 - __main__ - ERROR - Book search error: Search failed on Z-Library: Request failed: HTTPSConnectionPool(host='z-library.sk', port=443): Max retries exceeded with url: /s/9787533962524 (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x0000012EBD218B90>: Failed to establish a new connection: [WinError 10048] 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。')))
+2025-02-19 17:44:26,716 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 9787533962524
+2025-02-19 17:44:28,854 - __main__ - INFO - Search completed - Found 0 books
+2025-02-19 17:45:08,605 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 9787040589818
+2025-02-19 17:45:10,051 - __main__ - INFO - Search completed - Found 5 books
+2025-02-19 17:45:36,993 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 高等数学
+2025-02-19 17:45:38,408 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:46:39,940 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 高等数学
+2025-02-19 17:46:41,550 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:46:49,517 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 高等数学
+2025-02-19 17:46:50,564 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:48:24,779 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 高等数学9787302247661
+2025-02-19 17:48:25,634 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:48:27,045 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 9787302247661
+2025-02-19 17:48:31,606 - __main__ - INFO - Search completed - Found 0 books
+2025-02-19 17:48:34,154 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 9787302247661
+2025-02-19 17:48:34,954 - __main__ - INFO - Search completed - Found 0 books
+2025-02-19 17:48:43,854 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 大学物理
+2025-02-19 17:48:45,829 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:51:18,950 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 学物理
+2025-02-19 17:51:20,501 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:51:58,951 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 高等数学
+2025-02-19 17:52:00,549 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 17:52:35,281 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 高等数学
+2025-02-19 17:52:36,906 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 18:03:36,243 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 高等学校
+2025-02-19 18:03:38,553 - __main__ - INFO - Search completed - Found 50 books
+2025-02-19 18:03:38,701 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 高等数学
+2025-02-19 18:03:39,595 - __main__ - INFO - Search completed - Found 50 books

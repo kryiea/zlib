@@ -22,8 +22,16 @@
     "@vue/cli-plugin-eslint": "~5.0.8",
     "@vue/cli-service": "~5.0.8",
     "@vue/compiler-sfc": "^3.4.15",
+    "autoprefixer": "^10.4.20",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.56.0",
-    "eslint-plugin-vue": "^9.21.1"
-  }
-} 
+    "eslint-plugin-vue": "^9.21.1",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^4.0.3"
+  },
+  "main": ".eslintrc.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

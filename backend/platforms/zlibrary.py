@@ -1,4 +1,5 @@
 import requests
+import urllib3.exceptions
 from typing import Dict, Any
 import logging
 from bs4 import BeautifulSoup
@@ -33,7 +34,8 @@ class ZLibrary(BookPlatform):
             response = requests.get(
                 url,
                 headers=self.headers,
-                timeout=self.timeout
+                timeout=self.timeout,
+                verify=False
             )
             logger.info(f"Got response with status code: {response.status_code}")
             logger.debug(f"Response content preview: {response.text[:500]}")
@@ -109,6 +111,9 @@ class ZLibrary(BookPlatform):
         except requests.Timeout:
             logger.error("Request timed out")
             raise SearchError("Request timed out", self.platform_name)
+        except urllib3.exceptions.SSLError as e:
+            logger.error(f"SSL error: {str(e)}")
+            raise SearchError(f"SSL error: {str(e)}", self.platform_name)
         except requests.RequestException as e:
             logger.error(f"Request failed: {str(e)}")
             raise SearchError(f"Request failed: {str(e)}", self.platform_name)
