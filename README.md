@@ -2,6 +2,8 @@
 
 这是一个基于Vue.js和Flask的电子书搜索系统。
 
+支持多种搜索平台，包括zlibrary等等。
+
 ## 项目结构
 
 ```
@@ -60,3 +62,6 @@ python -m http.server 8080 --directory frontend/dist
 1. 确保后端API地址在前端配置正确（vue.config.js中）
 2. 建议在生产环境中使用正式的Web服务器（如Nginx）来托管前端静态文件
 3. 可以根据需要修改后端服务的端口号和其他配置
+
+## 前端演示
+![image](1.png)
