@@ -38,6 +38,11 @@ import SearchBar from './components/SearchBar.vue'
 import SearchResults from './components/SearchResults.vue'
 import axios from 'axios'
 
+// 根据环境确定API基础URL
+const API_BASE_URL = process.env.NODE_ENV === 'production' 
+  ? window.location.origin + '/api' // 生产环境使用相对路径
+  : '/api'; // 开发环境使用代理
+
 export default {
   name: 'App',
   components: {
@@ -58,7 +63,7 @@ export default {
       try {
         this.hasSearched = true;
         this.searchResults = []; // 清空之前的搜索结果
-        const response = await axios.get(`/api/zlibrary/s/${encodeURIComponent(keyword)}`);
+        const response = await axios.get(`${API_BASE_URL}/zlibrary/s/${encodeURIComponent(keyword)}`);
         
         if (response.data) {
           this.searchResults = response.data.books;
