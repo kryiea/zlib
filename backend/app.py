@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Flask, Response, jsonify
 from platforms import PlatformFactory
 from utils.errors import BookSearchError
@@ -88,4 +89,4 @@ if __name__ == '__main__':
         debug=Config.DEBUG,
         host=Config.HOST,
         port=Config.PORT
-    ) 
+    )
