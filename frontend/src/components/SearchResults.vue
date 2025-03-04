@@ -28,25 +28,25 @@
         <div class="col-source">来源平台</div>
       </div>
 
-      <div class="table-row" v-for="book in sortedBooks" :key="book.isbn">
+      <div class="table-row" v-for="book in sortedBooks" :key="book.isbn" :class="{'table-row-hover': true}">
         <div class="col-book-info">
           <div class="book-info-main">
             <div class="book-title">{{ book.title }}</div>
             <div class="book-author" v-if="book.author">{{ book.author }}</div>
           </div>
           <div class="book-details">
-            <span v-if="book.year">{{ book.year }}</span>
-            <span v-if="book.language">{{ book.language }}</span>
-            <span v-if="book.filesize">{{ book.filesize }}</span>
-            <span v-if="book.extension">{{ book.extension }}</span>
-            <span v-if="book.isbn">ISBN: {{ book.isbn }}</span>
+            <span v-if="book.year" class="book-detail-item"><i class="bi bi-calendar3"></i> {{ book.year }}</span>
+            <span v-if="book.language" class="book-detail-item"><i class="bi bi-translate"></i> {{ book.language }}</span>
+            <span v-if="book.filesize" class="book-detail-item"><i class="bi bi-file-earmark"></i> {{ book.filesize }}</span>
+            <span v-if="book.extension" class="book-detail-item"><i class="bi bi-file-earmark-text"></i> {{ book.extension }}</span>
+            <span v-if="book.isbn" class="book-detail-item"><i class="bi bi-upc-scan"></i> ISBN: {{ book.isbn }}</span>
           </div>
         </div>
         <div class="col-author">{{ book.author }}</div>
         <div class="col-publisher">{{ book.publisher }}</div>
         <div class="col-link">
           <a :href="book.book_url" target="_blank" class="download-link">
-            <i class="fas fa-download"></i> 下载
+            <i class="bi bi-download"></i> 下载
           </a>
         </div>
         <div class="col-source">
@@ -59,12 +59,16 @@
 
     <!-- 无结果提示 -->
     <div v-else-if="hasSearched" class="no-results">
-      未找到相关书籍
+      <div class="no-results-content">
+        <i class="bi bi-search text-muted mb-3" style="font-size: 3rem;"></i>
+        <h4>未找到相关书籍</h4>
+        <p class="text-muted">请尝试使用其他关键词搜索</p>
+      </div>
     </div>
 
     <!-- 默认示例书籍 -->
     <div v-else class="example-books">
-      <div class="example-title">示例书籍</div>
+      <div class="example-title"><i class="bi bi-info-circle me-2"></i>示例书籍</div>
       <div class="results-table">
         <div class="table-header">
           <div class="col-book-info">
@@ -80,21 +84,21 @@
           <div class="col-source">来源平台</div>
         </div>
         
-        <div class="table-row" v-for="book in sortedExampleBooks" :key="book.isbn">
+        <div class="table-row" v-for="book in sortedExampleBooks" :key="book.isbn" :class="{'table-row-hover': true}">
           <div class="col-book-info">
             <div class="book-title">{{ book.title }}</div>
             <div class="book-details">
-              <span>{{ book.year }}</span>
-              <span>| {{ book.language }}</span>
-              <span>| {{ book.filesize }}</span>
-              <span>| {{ book.extension }}</span>
+              <span class="book-detail-item"><i class="bi bi-calendar3"></i> {{ book.year }}</span>
+              <span class="book-detail-item"><i class="bi bi-translate"></i> {{ book.language }}</span>
+              <span class="book-detail-item"><i class="bi bi-file-earmark"></i> {{ book.filesize }}</span>
+              <span class="book-detail-item"><i class="bi bi-file-earmark-text"></i> {{ book.extension }}</span>
             </div>
           </div>
           <div class="col-author">{{ book.author }}</div>
           <div class="col-publisher">{{ book.publisher }}</div>
           <div class="col-link">
             <button class="download-link" disabled>
-              <i class="fas fa-download"></i> 示例
+              <i class="bi bi-download"></i> 示例
             </button>
           </div>
           <div class="col-source">
@@ -237,113 +241,143 @@ export default {
 
 .platform-status-bar {
   margin-bottom: 1.5rem;
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.25rem;
   background-color: #ffffff;
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.platform-status-bar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 
 .platform-status-title {
   margin-right: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #374151;
 }
 
 .platform-badges {
   display: flex;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .platform-badge {
-  padding: 0.375rem 0.75rem;
-  border-radius: 6px;
-  background-color: #e5e7eb;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background-color: #f3f4f6;
   color: #4b5563;
   font-size: 0.875rem;
+  font-weight: 500;
   transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .platform-badge-available {
   background-color: #10b981;
   color: #ffffff;
+  box-shadow: 0 2px 4px rgba(16,185,129,0.2);
 }
 
 .results-table {
   background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.results-table:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
 .table-header {
   display: grid;
   grid-template-columns: minmax(300px, 3fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(120px, 1fr) minmax(120px, 1fr);
   gap: 1rem;
   background-color: #f9fafb;
-  padding: 1rem;
-  font-weight: 500;
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
   color: #374151;
   border-bottom: 1px solid #e5e7eb;
   align-items: center;
+  letter-spacing: 0.025em;
 }
 
 .table-row {
   display: grid;
   grid-template-columns: minmax(300px, 3fr) minmax(150px, 1fr) minmax(150px, 1fr) minmax(120px, 1fr) minmax(120px, 1fr);
   gap: 1rem;
-  padding: 1rem;
+  padding: 1.25rem 1.5rem;
   border-bottom: 1px solid #e5e7eb;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
   align-items: center;
 }
+
+.table-row-hover:hover {
+  background-color: #f9fafb;
+}
+
 .book-info-main {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .book-title {
-  font-weight: 500;
+  font-weight: 600;
   color: #111827;
-  line-height: 1.4;
+  line-height: 1.5;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   white-space: normal;
-  min-height: 2.8em;
+  min-height: 3em;
+  font-size: 1rem;
 }
 
 .book-author {
   font-size: 0.875rem;
   color: #4b5563;
-  margin-top: 0.25rem;
+  margin-top: 0.375rem;
+  font-weight: 500;
 }
 
 .book-details {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 1rem;
   font-size: 0.875rem;
   color: #6b7280;
   line-height: 1.5;
 }
 
-.book-details span {
+.book-detail-item {
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
+  gap: 0.375rem;
+  background-color: #f3f4f6;
+  padding: 0.25rem 0.625rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
-.book-details span:not(:last-child)::after {
-  content: "";
-  display: inline-block;
-  width: 4px;
-  height: 4px;
-  background-color: #d1d5db;
-  border-radius: 50%;
-  margin-left: 0.75rem;
+.book-detail-item:hover {
+  background-color: #e5e7eb;
 }
+
+.book-detail-item i {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
 .download-link {
   padding: 0.375rem 1rem;
   background-color: #10b981;
@@ -357,18 +391,30 @@ export default {
   justify-content: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   min-width: 90px;
-  height: 32px;
+  height: 36px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(16,185,129,0.2);
 }
+
 .download-link:hover {
   background-color: #059669;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(16,185,129,0.3);
 }
+
+.download-link:active {
+  transform: translateY(0);
+}
+
 .download-link:disabled {
   background-color: #e5e7eb;
   color: #9ca3af;
   cursor: not-allowed;
+  box-shadow: none;
 }
+
 .source-badge {
   padding: 0.375rem 0.75rem;
   border-radius: 6px;
@@ -379,39 +425,56 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 32px;
+  height: 36px;
   min-width: 90px;
+  box-shadow: 0 2px 4px rgba(16,185,129,0.2);
 }
+
 .source-zlibrary {
   background-color: #10b981;
 }
+
 .no-results {
   text-align: center;
-  padding: 3rem 1.5rem;
+  padding: 4rem 1.5rem;
   color: #6b7280;
   background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
+
+.no-results-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .example-books {
   opacity: 0.8;
 }
+
 .example-title {
   margin-bottom: 1rem;
   font-weight: 500;
   color: #4b5563;
   font-size: 0.875rem;
+  display: flex;
+  align-items: center;
 }
+
 .col-link {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .col-source {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .sort-button {
   background: none;
   border: none;
@@ -427,20 +490,25 @@ export default {
   transition: all 0.2s ease;
   user-select: none;
 }
+
 .sort-button:hover {
   background-color: #e5e7eb;
 }
+
 .sort-button .bi {
   font-size: 1rem;
   line-height: 1;
   transition: transform 0.2s ease;
 }
+
 .bi-sort-up {
   transform: translateY(-1px);
 }
+
 .bi-sort-down {
   transform: translateY(1px);
 }   
+
 .bi-dash {
   opacity: 0.5;
 }

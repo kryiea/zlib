@@ -241,3 +241,6 @@
 2025-02-19 18:09:51,208 - __main__ - INFO - Starting server - Debug: False, Host: 0.0.0.0, Port: 5000
 2025-02-19 18:10:54,920 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 计算机网络
 2025-02-19 18:10:56,182 - __main__ - INFO - Search completed - Found 50 books
+2025-03-04 04:31:37,768 - __main__ - INFO - Starting server - Debug: False, Host: 0.0.0.0, Port: 5000
+2025-03-04 04:31:48,459 - __main__ - INFO - Received search request - Platform: zlibrary, Keyword: 高等数学
+2025-03-04 04:31:49,761 - __main__ - INFO - Search completed - Found 50 books

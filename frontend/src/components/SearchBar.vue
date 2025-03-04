@@ -1,32 +1,42 @@
 <template>
   <div class="search-bar mb-4">
     <div class="card shadow-sm">
-      <div class="card-body">
-        <h4 class="card-title mb-4 text-primary">🔍</h4>
+      <div class="card-body p-4">
+        <div class="search-header mb-4">
+          <h3 class="search-title">📚 电子书搜索</h3>
+          <p class="search-subtitle">快速找到您需要的电子书资源</p>
+        </div>
         <div class="form-group">
-          <div class="input-group mb-3">
+          <div class="input-group search-input-group mb-3">
+            <span class="input-group-text search-icon">
+              <i class="bi bi-search"></i>
+            </span>
             <input
               v-model="searchInput"
               type="text"
-              class="form-control form-control-lg"
-              placeholder="输入书名或ISBN码"
+              class="form-control form-control-lg search-input"
+              placeholder="输入书名、作者或ISBN码"
               @keyup.enter="handleSearch"
+              autocomplete="off"
             />
             <button
               @click="handleSearch"
-              class="btn btn-primary btn-lg"
+              class="btn btn-primary btn-lg search-button"
               :disabled="!isValidInput"
+              :class="{'btn-loading': isSearching}"
             >
-              <i class="bi bi-search me-1"></i>
-              搜索
+              <span v-if="!isSearching">搜索</span>
+              <span v-else class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             </button>
           </div>
-          <div v-if="error" class="alert alert-danger mt-2">
+          <div v-if="error" class="alert alert-danger mt-2 search-error">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
             {{ error }}
           </div>
-          <small class="form-text text-muted">
-            支持书名或ISBN码（10位或13位数字）搜索
-          </small>
+          <div class="search-tips">
+            <i class="bi bi-info-circle me-1"></i>
+            <small class="form-text">支持书名、作者或ISBN码（10位或13位数字）搜索</small>
+          </div>
         </div>
       </div>
     </div>
@@ -169,21 +179,111 @@ export default {
 .card {
   border: none;
   background: #fff;
+  border-radius: 12px;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-.btn-primary {
+.search-header {
+  text-align: center;
+}
+
+.search-title {
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+}
+
+.search-subtitle {
+  color: #6b7280;
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.search-input-group {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.search-icon {
+  background-color: #fff;
+  border: none;
+  border-right: none;
+  color: #6b7280;
+  padding-left: 1.25rem;
+}
+
+.search-input {
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-left: none;
+  border-radius: 0;
+}
+
+.search-input:focus {
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.search-button {
   padding-left: 2rem;
   padding-right: 2rem;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  border: none;
+  font-weight: 600;
+  min-width: 100px;
+  transition: all 0.3s ease;
 }
 
-.form-control:focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  border-color: #80bdff;
+.search-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4338ca, #2563eb);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.search-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-loading {
+  opacity: 0.8;
+}
+
+.search-error {
+  border-radius: 8px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+.search-tips {
+  display: flex;
+  align-items: center;
+  margin-top: 0.75rem;
+  color: #6b7280;
+  padding: 0 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .search-title {
+    font-size: 1.5rem;
+  }
+  
+  .search-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .search-button {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 </style>
